@@ -5,7 +5,7 @@
    },
    "headers": {
       "/**": {
-        "Access-Control-Allow-Origin": "http://swapi.dev"
+        "Access-Control-Allow-Origin": "*"
       }
     }
  }
