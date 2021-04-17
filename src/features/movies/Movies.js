@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import logo from '../../logo.svg';
 import {
    selectMovie,
    selectMovies,
@@ -40,6 +40,9 @@ import {
                   dispatch(selectMovie(movie));
                   dispatch(resetCastList(movie.characters.length));
                   movie.characters.forEach((url) => dispatch(fetchCastMemberInfo(url)));
+               } else {
+                  dispatch(selectMovie(null));
+                  dispatch(resetCastList(0));
                }
             }}
          >
@@ -50,7 +53,18 @@ import {
                <option value={index} key={index}>{movie.title}</option>))}
          </select>
       </header>
-       
+
+      {selectedMovie 
+         ? <MovieCrawl />
+         : <img src={logo} alt='Star Wars Logo' />
+      }
+      </>
+    )
+ }
+
+function MovieCrawl() {
+   const selectedMovie = useSelector(activeMovieSelector);
+   return (
       <div className='marquee'>
          <div>
             <span>
@@ -58,6 +72,7 @@ import {
             </span>
          </div>
       </div>
-      </>
-    )
- }
+   );
+}
+
+

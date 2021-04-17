@@ -4,6 +4,7 @@ import { fetchActorInfo } from '../movies/movieAPI';
 
 const initialState = {
    list: [],
+   castCount: 0,
    loading_cast: false,
    castSortSettings: {
       by: 'name',
@@ -41,6 +42,10 @@ export const castSlice = createSlice({
       },
       resetCastList: (state, action) => {
          state.list = [];
+         state.castFilterSettings = {
+            by: 'gender',
+            val: 'all',
+         };
          state.castCount = action.payload;
       },
    },
