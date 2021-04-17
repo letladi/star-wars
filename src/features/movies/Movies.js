@@ -30,43 +30,40 @@ import {
 
     return (
       <>
-       <select 
-         name="movies" 
-         id="movie-select"
-         onChange={(e) => {
-            const i = Number(e.target.value);
-            if (i >= 0) {
-               const movie = movies[i]
-               dispatch(selectMovie(movie));
-               movie.characters.forEach((url) => dispatch(fetchCast(url)));
-            }
-         }}
-      >
-         <option value="-1">Please Choose A Movie Title</option>
-         {movies.map((movie, index) => (
-            <option value={index} key={index}>{movie.title}</option>))}
-       </select>
-      {/* <div className={styles.marquee}>
-         <p className={styles.marqueeParagraph}>
-         <span className={styles.marqueeSpan}>
-            {selectedMovie && selectedMovie.opening_crawl}
-         </span>
-         </p>
-      </div> */}
+      <header>
+         <select 
+         disabled={!movies.length}
+            name="movies" 
+            id="movie-select"
+            onChange={(e) => {
+               const i = Number(e.target.value);
+               if (i >= 0) {
+                  const movie = movies[i]
+                  dispatch(selectMovie(movie));
+                  movie.characters.forEach((url) => dispatch(fetchCast(url)));
+               }
+            }}
+         >
+            <option value="-1">
+               {!movies.length ?
+                  "Loading Movies" :
+                  "Please Choose A Movie Title"
+               }
+               
+               </option>
+            {movies.map((movie, index) => (
+               <option value={index} key={index}>{movie.title}</option>))}
+         </select>
+      </header>
+       
 
       <div className={styles.marquee}>
          <div className={styles.marqueeDiv}>
             <span className={styles.marqueeSpan}>
                {selectedMovie && selectedMovie.opening_crawl}
             </span>
-            {/* <span className={styles.marqueeSpan}>You spin me right round, baby. Like a record, baby.</span> */}
          </div>
       </div>
-
-      {/* <p 
-         
-         style={{ width: '100%', 'white-space': 'nowrap'}}
-      ></p> */}
 
       <Cast />
       </>
@@ -86,10 +83,8 @@ export function Cast() {
      <>
       <table style={{ backgroundColor: 'rbga(225, 173, 1, 1)' }}>
          <thead>
-            <TRow>
-               <TCol></TCol>
-               <TCol></TCol>
-               <TCol>
+            <tr>
+               <td colSpan={3}>
                  <span>Filter By Gender</span>
                  <select
                     onChange={(e) => {
@@ -104,10 +99,10 @@ export function Cast() {
                        <option value={value} key={index}>{text}</option>
                     ))}
                </select>
-               </TCol>
+               </td>
                
-            </TRow>
-           <TRow>
+            </tr>
+           <tr>
               <th
                  onClick={() => dispatch(sortCast('name'))}
               >
@@ -119,37 +114,32 @@ export function Cast() {
               >
                  Height 
               </th>
-           </TRow>
+           </tr>
          </thead>
          <tbody>
            {cast.map((actor, index) => (
-              <TRow key={index}>
-                 <TCol>{actor.name}</TCol>
-                 <TCol>{actor.gender === 'male' ? '♂' : (actor.gender === 'female' ? '♀' : '-') }</TCol>
-                 <TCol>{isNaN(actor.height) ? '-' : actor.height}</TCol>
-              </TRow>
+              <tr key={index}>
+                 <td>{actor.name}</td>
+                 <td>{actor.gender === 'male' ? '♂' : (actor.gender === 'female' ? '♀' : '-') }</td>
+                 <td>{isNaN(actor.height) ? '-' : actor.height}</td>
+              </tr>
            ))}
-           <TRow>
-              <TCol>Number of Actors: {castCount}</TCol>
-              <TCol>
+           <tr>
+              <td>Number of Actors: {castCount}</td>
+              <td colSpan={2}>
                  Total Cast Height: {heightTotalInCM}cm ({heightTotalInFt}ft/{heightTotalInInches}in)
-              </TCol>
-           </TRow>
-           {loadingCast ? 
-              (<TRow><TCol>Loading...</TCol></TRow>)
-              : null
-           }
+              </td>
+           </tr>
+           
         </tbody>
+        <tfoot>
+            {loadingCast ? 
+              (<tr><td colSpan={3}>Loading...</td></tr>)
+              : null
+            }
+        </tfoot>
       </table>
      </>
    )
-}
-
-function TCol(props) {
-   return <td className={'td'}>{props.children}</td>
-}
-
-function TRow(props) {
-   return <tr className={'tr'}>{props.children}</tr>
 }
  

@@ -126,7 +126,7 @@ export const castCountSelector = (state) => getFilteredCast(state).length;
 
 export const heightTotalSelector = (state) => {
    if (!state.movies.cast.length) return [0, 0, 0];
-   const totalInCMs = state.movies.cast.reduce((totalHeight, { height }) => {
+   const totalInCMs = getFilteredCast(state).reduce((totalHeight, { height }) => {
       return isNaN(height) ? 
          totalHeight : (totalHeight + Number(height));
    }, 0);
