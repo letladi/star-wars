@@ -1,0 +1,29 @@
+.marquee {
+   min-height: 25px;
+   width: 100%;
+ 
+   overflow: hidden;
+   position: relative;
+ }
+ 
+ .marqueeDiv {
+   display: block;
+   width: 200%;
+   height: 30px;
+ 
+   position: absolute;
+   overflow: hidden;
+   white-space: nowrap;
+ 
+   animation: marquee 15s linear infinite;
+ }
+ 
+ .marqueeSpan {
+   float: left;
+   width: 100%;
+ }
+ 
+ @keyframes marquee {
+   0% { left: 0; }
+   100% { left: -100%; }
+ }

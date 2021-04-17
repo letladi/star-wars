@@ -1,5 +1,3 @@
-const api = process.env.NODE_ENV === 'production' ? 'https://swapi.dev/api/films' : '/films'
-
 export function fetchMovies() {
    return fetch('https://swapi.dev/api/films')
        .then(response => {

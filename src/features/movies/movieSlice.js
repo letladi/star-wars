@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { round } from 'lodash'
 import { fetchMovies, fetchMovieCast } from './movieAPI';
 
 const initialState = {
    list: [],
    cast: [],
-   status: 'idle',
+   status: 'not_loaded',
    selectedMovie: null,
    castStatus: false,
    castSortSettings: {
@@ -79,10 +80,10 @@ export const movieListAsync = createAsyncThunk(
             state.status = 'loading_movie';
          })
          .addCase(movieListAsync.fulfilled, (state, action) => {
-            state.status = 'idle';
+            state.status = 'loaded';
             state.list = action.payload;
          })
-         .addCase(fetchCast.pending, (state, action) => {
+         .addCase(fetchCast.pending, (state) => {
             state.loading_cast = true;
          })
          .addCase(fetchCast.fulfilled, (state, action) => {
@@ -96,17 +97,22 @@ export const movieListAsync = createAsyncThunk(
 
  export const selectMovies = (state) => state.movies.list;
  export const moviesStatus = (state) => state.movies.status;
- export const selectCast = (state) => {
+ export const activeMovieSelector = (state) => state.movies.selectedMovie;
+
+ const getFilteredCast = (state) => {
    const filter = state.movies.castFilterSettings;
-   const cast = state.movies.cast.filter(actor => {
+   return state.movies.cast.filter(actor => {
       if (filter.val === 'all') return true;
       else if (filter.by === 'gender') return actor.gender === filter.val;
       else return false;
    });
+ }
+ export const selectCast = (state) => {
+   
    const sortSettings = state.movies.castSortSettings;
 
    return sortBy(
-      cast, 
+      getFilteredCast(state), 
       sortSettings.by,
       sortSettings.asc,
       sortSettings.by === 'height' ? 'number' : 'string'
@@ -115,5 +121,21 @@ export const movieListAsync = createAsyncThunk(
 
  export const castStatus = (state) => state.movies.loading_cast;
  export const selectCastSortSettings = (state) => state.movies.castSortSettings;
+
+export const castCountSelector = (state) => getFilteredCast(state).length;
+
+export const heightTotalSelector = (state) => {
+   if (!state.movies.cast.length) return [0, 0, 0];
+   const totalInCMs = state.movies.cast.reduce((totalHeight, { height }) => {
+      return isNaN(height) ? 
+         totalHeight : (totalHeight + Number(height));
+   }, 0);
+
+   const centimeterInInches = 2.54;
+   const centimeterInFeet = 30.48;
+   const totalInInches = totalInCMs / centimeterInInches;
+   const totalInFt = totalInCMs / centimeterInFeet;
+   return [round(totalInCMs, 2), round(totalInInches, 2), round(totalInFt, 2)];
+}
 
  export default movieSlice.reducer;

@@ -48,7 +48,7 @@ export const counterSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(incrementAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = 'not_loaded';
         state.value += action.payload;
       });
   },
