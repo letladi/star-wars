@@ -2,12 +2,11 @@
   margin: 0 auto;
    min-height: 25px;
    width: 100%;
- 
    overflow: hidden;
    position: relative;
  }
  
- .marqueeDiv {
+ .marquee div {
    display: block;
    margin: 5px 0;
    width: 200%;
@@ -17,10 +16,10 @@
    overflow: hidden;
    white-space: nowrap;
  
-   animation: marquee 15s linear infinite;
+   animation: marquee 20s linear infinite;
  }
  
- .marqueeSpan {
+ .marquee span {
    float: left;
    width: 100%;
  }

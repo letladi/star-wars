@@ -11,7 +11,7 @@ export function fetchMovies() {
        });
 }
 
-export function fetchMovieCast(actorUrl) {
+export function fetchActorInfo(actorUrl) {
    return fetch(actorUrl)
       .then(response => {
          return response.json();
