@@ -39,8 +39,9 @@ export const castSlice = createSlice({
       filterCast: (state, action) => {
         state.castFilterSettings = action.payload;
       },
-      resetCastList: (state) => {
+      resetCastList: (state, action) => {
          state.list = [];
+         state.castCount = action.payload;
       },
    },
 
@@ -50,14 +51,15 @@ export const castSlice = createSlice({
            state.loading_cast = true;
         })
         .addCase(fetchCastMemberInfo.fulfilled, (state, action) => {
-           state.loading_cast = false;
+            state.castCount = state.castCount - 1;
+           state.loading_cast = state.castCount > 0;
+           
            state.list.push(action.payload);
         });
    },
 });
 
 const getFilteredCast = (state) => {
-   console.log("here is the state", state);
    const filter = state.cast.castFilterSettings;
    return state.cast.list.filter(actor => {
       if (filter.val === 'all') return true;
@@ -119,4 +121,4 @@ export const heightTotalSelector = (state) => {
 }
 
 export const { sortCast, filterCast, resetCastList } = castSlice.actions;
-export default castSlice;
+export default castSlice.reducer;

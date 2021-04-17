@@ -12,7 +12,7 @@ import './Cast.css';
 
 
 export function Cast() {
-   return null
+   
    const castCount = useSelector(castCountSelector);
    const [heightTotalInCM, heightTotalInInches, heightTotalInFt] = useSelector(heightTotalSelector);
    const cast = useSelector(selectCast);

@@ -10,7 +10,12 @@ const initialState = {
 export const movieListAsync = createAsyncThunk(
    'movies/fetchMovies',
    async () => {
-     return await fetchMovies();
+     try {
+         const ret = await fetchMovies();
+         return ret;
+      } catch(e) {
+         return { err: "Could not fetch movie list" };
+      }
    }
  );
 

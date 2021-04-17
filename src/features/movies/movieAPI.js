@@ -7,7 +7,7 @@ export function fetchMovies() {
          return data.results;
        })
        .catch((err) => {
-         // TODO: handle error for fetching movie
+         return err;
        });
 }
 
@@ -20,7 +20,7 @@ export function fetchActorInfo(actorUrl) {
       return data;
       })
       .catch((err) => {
-         // TODO: handle error for fetching cast
+         return err;
       });
 }
  

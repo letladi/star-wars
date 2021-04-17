@@ -36,9 +36,9 @@ import {
             onChange={(e) => {
                const i = Number(e.target.value);
                if (i >= 0) {
-                  const movie = movies[i]
+                  const movie = movies[i];
                   dispatch(selectMovie(movie));
-                  dispatch(resetCastList());
+                  dispatch(resetCastList(movie.characters.length));
                   movie.characters.forEach((url) => dispatch(fetchCastMemberInfo(url)));
                }
             }}
