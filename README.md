@@ -1,5 +1,11 @@
 # Stars WArs App
 
+<p align="center">
+  <a href="https://circleci.com/gh/Letladi/star-wars">
+    <img src="https://circleci.com/gh/Letladi/star-wars.svg?style=svg" alt="Build Status">
+  </a>
+</p>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template. 
 
 See the demo [here](https://letladi-paystack-demo.herokuapp.com/).
