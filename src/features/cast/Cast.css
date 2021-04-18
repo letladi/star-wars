@@ -29,18 +29,18 @@ select {
  }
  
  table tr {
-   background-color: rgba(	247,	204,	57, 0.8);
+   background-color: rgba(247, 204, 57, 1);
    border: none;
    cursor: pointer;
  }
  
  table tr:hover {
-   background-color: rgba(	247,	204,	57, 0.7);
+   background-color: rgba(247,	204,	57, 0.9);
  }
  
  td, th {
    padding: 10px 10px;
-   border-color: rgba(	247,	204,	57, 0.7);
+   border-color: rgba(247,	204,	57, 0.7);
    border: none;
  }
  
