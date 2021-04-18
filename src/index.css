@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  font-family: 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: 	rgba(0, 0, 0, 0.96); /* raisin black */
+  background-color: rgba(0, 0, 0, 0.96); /* raisin black */
   color: rgb(255, 232, 31);
 }

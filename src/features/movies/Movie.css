@@ -15,31 +15,35 @@ header select {
 
 .marquee {
   margin: 0 auto;
-   min-height: 25px;
-   width: 100%;
-   overflow: hidden;
-   position: relative;
-   font-weight: 500;
- }
- 
- .marquee div {
-   display: block;
-   margin: 5px 0;
-   width: 200%;
-   height: 30px;
- 
-   position: absolute;
-   overflow: hidden;
-   white-space: nowrap;
-   animation: marquee 20s linear infinite;
- }
- 
- .marquee span {
-   float: left;
-   width: 100%;
- }
- 
- @keyframes marquee {
-   0% { left: 0; }
-   100% { left: -100%; }
- }
+  min-height: 25px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  font-weight: 500;
+}
+
+.marquee div {
+  display: block;
+  margin: 5px 0;
+  width: 200%;
+  height: 30px;
+
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee span {
+  float: left;
+  width: 100%;
+}
+
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}

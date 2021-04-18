@@ -5,9 +5,11 @@
 }
 
 select {
-  background-color: rgba(	247,	204,	57, 1);
+  background-color: rgba(247, 204, 57, 1);
 }
 
-select:active, select:hover, select:focus {
-  outline-color: rgba(	247,	204,	57, 1);
+select:active,
+select:hover,
+select:focus {
+  outline-color: rgba(247, 204, 57, 1);
 }
