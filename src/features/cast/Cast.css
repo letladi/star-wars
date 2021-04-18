@@ -12,12 +12,13 @@ select {
  header select {
    min-width: 100%;
    display: block;
+   font-weight: 900;
  }
  
  table {
    width: 100%;
    margin: 10px 0;
-   /* background-color: rgb(239, 204, 0); */
+   color: rgba(0, 0, 0, 0.96);
    
  }
  

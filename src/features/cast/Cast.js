@@ -21,7 +21,6 @@ export function Cast() {
 
    if (!cast.length) return null;
    
-
    return (
      <>
       <table>
